@@ -18,17 +18,54 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-
+    const id = colorToEdit.id;
+    axios
+      .put(`http://localhost:5000/api/colors/${id}`, colorToEdit, {
+        headers: {
+          authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+        }
+      })
+      .then(res1 => {
+        // console.log(res1);
+        axios
+          .get('http://localhost:5000/api/colors', {
+            headers: {
+              authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+            }
+          })
+          .then(res => updateColors(res.data))
+          .catch(err => console.log({err}))
+      })
+      .catch(err => console.log({err}))
   };
 
   const deleteColor = color => {
+    // console.log("deleting", color);
+    axios
+      .delete(`http://localhost:5000/api/colors/${color.id}`, {
+        headers:{
+          authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+        }
+      })
+      .then(res1 => {
+        // console.log(res1)
+        axios
+          .get('http://localhost:5000/api/colors', {
+            headers: {
+              authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+            }
+          })
+          .then(res => updateColors(res.data))
+          .catch(err => console.log({err}))
+      })
+      .catch(err => console.log({err}))
   };
 
   return (
     <div className="colors-wrap">
       <p>colors</p>
       <ul>
-        {colors.map(color => (
+        {colors.length ? colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={e => {
@@ -45,7 +82,7 @@ const ColorList = ({ colors, updateColors }) => {
               style={{ backgroundColor: color.code.hex }}
             />
           </li>
-        ))}
+        )) : null}
       </ul>
       { editing && <EditMenu colorToEdit={colorToEdit} saveEdit={saveEdit} setColorToEdit={setColorToEdit} setEditing={setEditing}/> }
 

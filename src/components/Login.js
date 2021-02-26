@@ -6,10 +6,27 @@ const Login = () => {
   const [loginValues, setLoginValues] = useState({username:'', password:''});
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
+  // make a post request to retrieve a token from the api
+  // when you have handled the token, navigate to the BubblePage route
 
   // useEffect(()=>{
-  //   // make a post request to retrieve a token from the api
-  //   // when you have handled the token, navigate to the BubblePage route
+  //   axios
+  //     .delete(`http://localhost:5000/api/colors/1`, {
+  //       headers:{
+  //         'authorization': "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+  //       }
+  //     })
+  //     .then(res=>{
+  //       axios.get(`http://localhost:5000/api/colors`, {
+  //         headers:{
+  //           'authorization': ""
+  //         }
+  //       })
+  //       .then(res=> {
+  //         console.log(res);
+  //       });
+  //       console.log(res);
+  //     })
   // });
 
   const handleChange = e => {
