@@ -3,11 +3,7 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 
 export const getColors = () => {
   return axiosWithAuth()
-    .get(`http://localhost:5000/api/colors`, {
-      headers:{
-        'authorization': "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-      }
-    })
+    .get(`/api/colors`)
     .then(res => {
       console.log("from inside getColors")
       return res
@@ -19,22 +15,14 @@ export const getColors = () => {
 
 export const putColor = (color) => {
   return axiosWithAuth()
-    .put(`http://localhost:5000/api/colors/${color.id}`, color, {
-      headers: {
-        authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-      }
-    })
+    .put(`/api/colors/${color.id}`, color)
     .then(res => res)
     .catch(err => err)
 }
 
 export const deleteAColor = (color) => {
   return axiosWithAuth()
-    .delete(`http://localhost:5000/api/colors/${color.id}`, {
-      headers:{
-        authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-      }
-    })
+    .delete(`/api/colors/${color.id}`)
     .then(res => res)
     .catch(err => err)
 }
