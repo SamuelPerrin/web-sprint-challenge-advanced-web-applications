@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from '../helpers/axiosWithAuth';
 
 export const getColors = () => {
   return axios

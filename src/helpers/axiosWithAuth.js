@@ -5,9 +5,9 @@ const axiosWithAuth = () => {
   
   return axios.create({
     headers:{
-      'authorization': "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
+      'authorization': token,
     },
-    baseURL: 'http://localhost:5000',
+    baseURL: `http://localhost:5000`,
   });
 }
 
