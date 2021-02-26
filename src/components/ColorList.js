@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditMenu from "./EditMenu";
 import axios from "axios";
+import { putColor, deleteAColor } from '../api/colorCalls';
 
 const initialColor = {
   color: "",
@@ -19,12 +20,7 @@ const ColorList = ({ colors, updateColors }) => {
   const saveEdit = e => {
     e.preventDefault();
     const id = colorToEdit.id;
-    axios
-      .put(`http://localhost:5000/api/colors/${id}`, colorToEdit, {
-        headers: {
-          authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-        }
-      })
+    putColor(colorToEdit)
       .then(res1 => {
         // console.log(res1);
         axios
@@ -41,12 +37,7 @@ const ColorList = ({ colors, updateColors }) => {
 
   const deleteColor = color => {
     // console.log("deleting", color);
-    axios
-      .delete(`http://localhost:5000/api/colors/${color.id}`, {
-        headers:{
-          authorization:"ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-        }
-      })
+    deleteAColor(color)
       .then(res1 => {
         // console.log(res1)
         axios
