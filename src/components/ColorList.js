@@ -19,7 +19,7 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    const id = colorToEdit.id;
+    
     putColor(colorToEdit)
       .then(res1 => {
         // console.log(res1);
